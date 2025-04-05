@@ -1,9 +1,9 @@
 const express = require('express');
+const helmet = require('helmet');
 const app = express();
 
-app.use(helmet.frameguard({
-  action: 'deny'
-}));
+
+app.use(helmet()); // ✅ This calls the middleware
 
 
 
@@ -51,7 +51,6 @@ app.use(helmet.frameguard({
 
 module.exports = app;
 const api = require('./server.js');
-const helmet = require('helmet');
 app.use(express.static('public'));
 app.disable('strict-transport-security');
 app.use('/_api', api);
